@@ -141,6 +141,7 @@ view: payments {
   dimension: months_since_challenge_start {
     type: number
     sql: DATEDIFF(MONTHS,${backup_payment_sources.challenge_created_date},${payment_scheduled_for_date}) ;;
+    value_format_name: decimal_0
   }
 
   dimension: parent_payment_id {
