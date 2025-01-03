@@ -26,4 +26,11 @@ explore: backup_payment_sources {
     sql_on: ${backup_payment_sources.user_id} = ${user_profile.user_id} ;;
     relationship: many_to_one
   }
+
+  join: payments {
+    type: left_outer
+    sql_on: ${backup_payment_sources.user_id} = ${payments.user_id}
+      and ${payments.payment_scheduled_for_date} >= ${backup_payment_sources.challenge_created_date} ;;
+    relationship: many_to_many
+  }
 }
