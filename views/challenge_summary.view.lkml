@@ -146,7 +146,7 @@ view: challenge_summary {
 
   measure: challenge_success_rate {
     type: number
-    sql: ${challenges_succeeded} / ${challenges_completed} ;;
+    sql: ${challenges_succeeded} / NULLIF(${challenges_completed},0) ;;
     value_format_name: percent_1
   }
 }
