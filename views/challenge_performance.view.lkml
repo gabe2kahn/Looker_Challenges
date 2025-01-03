@@ -50,6 +50,12 @@ view: challenge_performance {
     type: string
     sql: ${TABLE}."CHALLENGE_STATUS" ;;
   }
+
+  dimension: challenge_type {
+    type: string
+    sql: ${TABLE}."CHALLENGE_TYPE" ;;
+  }
+
   dimension: charged_off_account {
     type: number
     sql: ${TABLE}."CHARGED_OFF_ACCOUNT" ;;
