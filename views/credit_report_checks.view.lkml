@@ -63,7 +63,30 @@ view: credit_report_checks {
     type: string
     sql: ${TABLE}."USER_ID" ;;
   }
-  measure: count {
-    type: count
+
+  measure: average_credit_report_views {
+    type: average
+    sql: ${num_credit_report_views} ;;
+  }
+
+  measure: median_credit_report_views {
+    type: number
+    sql: MEDIAN(${num_credit_report_views}) ;;
+  }
+
+  measure: users {
+    type: count_distinct
+    sql: ${user_id} ;;
+  }
+
+  measure: users_with_report_view {
+    type: count_distinct
+    sql: CASE WHEN ${num_credit_report_views} > 0 THEN ${user_id} END ;;
+  }
+
+  measure: percent_users_with_report_view {
+    type: number
+    sql: ${users_with_report_view} / NULLIF(${users},0) ;;
+    value_format_name: percent_1
   }
 }
