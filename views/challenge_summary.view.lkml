@@ -5,7 +5,7 @@ view: challenge_summary {
     type: yesno
     sql: ${TABLE}."AUTO_ENROLLMENT_IND" ;;
   }
-  dimension_group: challenge_created_ts {
+  dimension_group: challenge_created {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: CAST(${TABLE}."CHALLENGE_CREATED_TS" AS TIMESTAMP_NTZ) ;;
@@ -34,7 +34,7 @@ view: challenge_summary {
     type: yesno
     sql: ${TABLE}."CHALLENGE_END_OVERDUE_IND" ;;
   }
-  dimension_group: challenge_end_ts {
+  dimension_group: challenge_end {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: CAST(${TABLE}."CHALLENGE_END_TS" AS TIMESTAMP_NTZ) ;;
@@ -48,7 +48,7 @@ view: challenge_summary {
     primary_key: yes
     sql: ${TABLE}."CHALLENGE_ID" ;;
   }
-  dimension_group: challenge_last_updated_ts {
+  dimension_group: challenge_last_updated {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: CAST(${TABLE}."CHALLENGE_LAST_UPDATED_TS" AS TIMESTAMP_NTZ) ;;
@@ -77,7 +77,7 @@ view: challenge_summary {
     type: yesno
     sql: ${TABLE}."CHALLENGE_START_OVERDUE_IND" ;;
   }
-  dimension_group: challenge_start_ts {
+  dimension_group: challenge_start {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: CAST(${TABLE}."CHALLENGE_START_TS" AS TIMESTAMP_NTZ) ;;
@@ -106,7 +106,7 @@ view: challenge_summary {
     type: yesno
     sql: ${TABLE}."REWARD_CLAIMED_IND" ;;
   }
-  dimension_group: reward_claimed_ts {
+  dimension_group: reward_claimed {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: CAST(${TABLE}."REWARD_CLAIMED_TS" AS TIMESTAMP_NTZ) ;;
