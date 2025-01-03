@@ -35,3 +35,11 @@ explore: backup_payment_sources {
     relationship: many_to_many
   }
 }
+
+explore: credit_report_checks {
+  join: user_profile {
+    type: inner
+    sql_on: ${credit_report_checks.user_id} = ${user_profile.user_id} ;;
+    relationship: many_to_one
+  }
+}
