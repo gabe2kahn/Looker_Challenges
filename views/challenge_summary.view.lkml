@@ -128,4 +128,25 @@ view: challenge_summary {
     type: count_distinct
     sql: ${challenge_id} ;;
   }
+
+  measure: challenges_completed {
+    type: count_distinct
+    sql: CASE WHEN ${challenge_status} IN ('failed','succeeded') THEN ${challenge_id} END ;;
+  }
+
+  measure: challenges_succeeded {
+    type: count_distinct
+    sql: CASE WHEN ${challenge_status} IN ('succeeded') THEN ${challenge_id} END ;;
+  }
+
+  measure: challenges_failed {
+    type: count_distinct
+    sql: CASE WHEN ${challenge_status} IN ('failed') THEN ${challenge_id} END ;;
+  }
+
+  measure: challenge_success_rate {
+    type: number
+    sql: ${challenges_succeeded} / ${challenges_completed} ;;
+    value_format_name: percent_1
+  }
 }
