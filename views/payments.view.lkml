@@ -1,5 +1,5 @@
 view: payments {
-  sql_table_name: "CUSTOMER"."PAYMENTS"
+  sql_table_name: "CREDIT"."CUSTOMER"."PAYMENTS"
     ;;
   drill_fields: [processor_payment_id]
 
