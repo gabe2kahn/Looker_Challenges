@@ -19,3 +19,11 @@ explore: challenge_summary {
     relationship: many_to_one
   }
 }
+
+explore: backup_payment_sources {
+  join: user_profile {
+    type: inner
+    sql_on: ${backup_payment_sources.user_id} = ${user_profile.user_id} ;;
+    relationship: many_to_one
+  }
+}
