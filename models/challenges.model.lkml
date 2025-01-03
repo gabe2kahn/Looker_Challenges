@@ -30,7 +30,8 @@ explore: backup_payment_sources {
   join: payments {
     type: left_outer
     sql_on: ${backup_payment_sources.user_id} = ${payments.user_id}
-      and ${payments.payment_scheduled_for_date} >= ${backup_payment_sources.challenge_created_date} ;;
+      and ${payments.payment_scheduled_for_date} >=
+        DATEADD(MONTHS,-1,${backup_payment_sources.challenge_created_date}) ;;
     relationship: many_to_many
   }
 }
