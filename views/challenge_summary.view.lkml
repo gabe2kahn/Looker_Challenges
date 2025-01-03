@@ -144,6 +144,11 @@ view: challenge_summary {
     sql: CASE WHEN ${challenge_status} IN ('failed') THEN ${challenge_id} END ;;
   }
 
+  measure: challenges_in_progress {
+    type: count_distinct
+    sql: CASE WHEN ${challenge_status} IN ('pending','activated') THEN ${challenge_id} END ;;
+  }
+
   measure: challenge_success_rate {
     type: number
     sql: ${challenges_succeeded} / NULLIF(${challenges_completed},0) ;;
