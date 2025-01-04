@@ -44,13 +44,15 @@ view: credit_report_checks {
     type: number
     sql: ${TABLE}."NUM_CREDIT_REPORT_VIEWS" ;;
   }
-  dimension_group: report_view_month {
+
+  dimension_group: report_view {
     type: time
-    timeframes: [raw, date, week, month, quarter, year]
+    timeframes: [month, quarter, year]
     convert_tz: no
     datatype: date
     sql: ${TABLE}."REPORT_VIEW_MONTH" ;;
   }
+
   dimension: reward_type {
     type: string
     sql: ${TABLE}."REWARD_TYPE" ;;
@@ -67,6 +69,7 @@ view: credit_report_checks {
   measure: average_credit_report_views {
     type: average
     sql: ${num_credit_report_views} ;;
+    value_format_name: decimal_2
   }
 
   measure: median_credit_report_views {
