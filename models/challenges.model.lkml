@@ -51,3 +51,11 @@ explore: credit_report_checks {
     relationship: many_to_one
   }
 }
+
+explore: gas_grocery_spend {
+  join: user_profile {
+    type: inner
+    sql_on: ${gas_grocery_spend.user_id} = ${user_profile.user_id} ;;
+    relationship: many_to_one
+  }
+}

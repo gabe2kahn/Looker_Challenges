@@ -31,10 +31,13 @@ view: gas_grocery_spend {
     type: string
     sql: ${TABLE}."CHALLENGE_STATUS" ;;
   }
+
   dimension: groc_gas_spend {
     type: number
     sql: ${TABLE}."GROC_GAS_SPEND" ;;
+    value_format_name: usd
   }
+
   dimension_group: last_update_ts {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
@@ -63,7 +66,32 @@ view: gas_grocery_spend {
     type: string
     sql: ${TABLE}."USER_ID" ;;
   }
-  measure: count {
-    type: count
+  measure: average_groc_gas_spend {
+    type: average
+    sql: ${groc_gas_spend} ;;
+    value_format_name: usd
   }
+
+  measure: median_groc_gas_views {
+    type: number
+    sql: MEDIAN(${groc_gas_spend}) ;;
+    value_format_name: usd
+  }
+
+  measure: users {
+    type: count_distinct
+    sql: ${user_id} ;;
+  }
+
+  measure: users_with_groc_gas_spend {
+    type: count_distinct
+    sql: CASE WHEN ${groc_gas_spend} > 0 THEN ${user_id} END ;;
+  }
+
+  measure: percent_users_with_groc_gas_spend {
+    type: number
+    sql: ${users_with_groc_gas_spend} / NULLIF(${users},0) ;;
+    value_format_name: percent_1
+  }
+
 }
