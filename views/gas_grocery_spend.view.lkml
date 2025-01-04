@@ -1,7 +1,7 @@
 view: gas_grocery_spend {
   sql_table_name: "CHALLENGES"."GAS_GROCERY_SPEND" ;;
 
-  dimension_group: challenge_created_ts {
+  dimension_group: challenge_created {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: CAST(${TABLE}."CHALLENGE_CREATED_TS" AS TIMESTAMP_NTZ) ;;
@@ -22,7 +22,7 @@ view: gas_grocery_spend {
     type: yesno
     sql: ${TABLE}."CHALLENGE_START_OVERDUE_IND" ;;
   }
-  dimension_group: challenge_start_ts {
+  dimension_group: challenge_start {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: CAST(${TABLE}."CHALLENGE_START_TS" AS TIMESTAMP_NTZ) ;;
@@ -38,11 +38,6 @@ view: gas_grocery_spend {
     value_format_name: usd
   }
 
-  dimension_group: last_update_ts {
-    type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
-    sql: ${TABLE}."LAST_UPDATE_TS" ;;
-  }
   dimension: months_since_challenge {
     type: number
     sql: ${TABLE}."MONTHS_SINCE_CHALLENGE" ;;
@@ -51,9 +46,9 @@ view: gas_grocery_spend {
     type: string
     sql: ${TABLE}."REWARD_TYPE" ;;
   }
-  dimension_group: spend_month {
+  dimension_group: spend {
     type: time
-    timeframes: [raw, date, week, month, quarter, year]
+    timeframes: [month, quarter, year]
     convert_tz: no
     datatype: date
     sql: ${TABLE}."SPEND_MONTH" ;;
