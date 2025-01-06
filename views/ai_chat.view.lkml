@@ -63,7 +63,31 @@ view: ai_chat {
     type: string
     sql: ${TABLE}."USER_ID" ;;
   }
-  measure: count {
-    type: count
+
+  measure: average_ai_chats {
+    type: average
+    sql: ${num_artie_conversations} ;;
+    value_format_name: decimal_2
+  }
+
+  measure: median_ai_chats {
+    type: number
+    sql: MEDIAN(${num_artie_conversations}) ;;
+  }
+
+  measure: users {
+    type: count_distinct
+    sql: ${user_id} ;;
+  }
+
+  measure: users_with_ai_chat {
+    type: count_distinct
+    sql: CASE WHEN ${num_artie_conversations} > 0 THEN ${user_id} END ;;
+  }
+
+  measure: percent_users_ai_chat {
+    type: number
+    sql: ${users_with_ai_chat} / NULLIF(${users},0) ;;
+    value_format_name: percent_1
   }
 }

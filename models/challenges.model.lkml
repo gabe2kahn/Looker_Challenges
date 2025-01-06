@@ -59,3 +59,11 @@ explore: gas_grocery_spend {
     relationship: many_to_one
   }
 }
+
+explore: ai_chat {
+  join: user_profile {
+    type: inner
+    sql_on: ${ai_chat.user_id} = ${user_profile.user_id} ;;
+    relationship: many_to_one
+  }
+}
