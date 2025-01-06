@@ -85,7 +85,7 @@ view: ai_chat {
     sql: CASE WHEN ${num_artie_conversations} > 0 THEN ${user_id} END ;;
   }
 
-  measure: percent_users_ai_chat {
+  measure: percent_users_with_ai_chat {
     type: number
     sql: ${users_with_ai_chat} / NULLIF(${users},0) ;;
     value_format_name: percent_1
