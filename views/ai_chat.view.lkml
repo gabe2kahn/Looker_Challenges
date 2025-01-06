@@ -1,18 +1,20 @@
 view: ai_chat {
   sql_table_name: "CHALLENGES"."AI_CHAT" ;;
 
-  dimension_group: artie_chat_month {
+  dimension_group: artie_chat {
     type: time
-    timeframes: [raw, date, week, month, quarter, year]
+    timeframes: [month, quarter, year]
     convert_tz: no
     datatype: date
     sql: ${TABLE}."ARTIE_CHAT_MONTH" ;;
   }
-  dimension_group: challenge_created_ts {
+
+  dimension_group: challenge_created {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: CAST(${TABLE}."CHALLENGE_CREATED_TS" AS TIMESTAMP_NTZ) ;;
   }
+
   dimension: challenge_id {
     type: number
     sql: ${TABLE}."CHALLENGE_ID" ;;
@@ -29,20 +31,18 @@ view: ai_chat {
     type: yesno
     sql: ${TABLE}."CHALLENGE_START_OVERDUE_IND" ;;
   }
-  dimension_group: challenge_start_ts {
+
+  dimension_group: challenge_start {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: CAST(${TABLE}."CHALLENGE_START_TS" AS TIMESTAMP_NTZ) ;;
   }
+
   dimension: challenge_status {
     type: string
     sql: ${TABLE}."CHALLENGE_STATUS" ;;
   }
-  dimension_group: last_update_ts {
-    type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
-    sql: ${TABLE}."LAST_UPDATE_TS" ;;
-  }
+
   dimension: months_since_challenge {
     type: number
     sql: ${TABLE}."MONTHS_SINCE_CHALLENGE" ;;
