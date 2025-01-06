@@ -67,3 +67,11 @@ explore: ai_chat {
     relationship: many_to_one
   }
 }
+
+explore: autopay_success {
+  join: user_profile {
+    type: inner
+    sql_on: ${autopay_success.user_id} = ${user_profile.user_id} ;;
+    relationship: many_to_one
+  }
+}

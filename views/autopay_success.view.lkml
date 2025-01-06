@@ -67,7 +67,36 @@ view: autopay_success {
     type: string
     sql: ${TABLE}."USER_ID" ;;
   }
-  measure: count {
-    type: count
+
+  measure: users {
+    type: count_distinct
+    sql: ${user_id} ;;
+  }
+
+  measure: users_with_successful_autopays {
+    type: count_distinct
+    sql: CASE WHEN ${successful_autopays} > 0 THEN ${user_id} END ;;
+  }
+
+  measure: total_successful_autopays {
+    type: sum
+    sql: ${successful_autopays} ;;
+  }
+
+  measure: total_autopays {
+    type: sum
+    sql: ${autopays} ;;
+  }
+
+  measure: autopay_success_rate {
+    type: number
+    sql: ${total_successful_autopays}/NULLIF(${total_autopays},0) ;;
+    value_format_name: percent_1
+  }
+
+  measure: user_autopay_success_rate {
+    type: number
+    sql: ${users_with_successful_autopays}/NULLIF(${users},0) ;;
+    value_format_name: percent_1
   }
 }
