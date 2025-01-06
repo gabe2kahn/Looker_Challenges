@@ -1,9 +1,9 @@
 view: autopay_success {
   sql_table_name: "CHALLENGES"."AUTOPAY_SUCCESS" ;;
 
-  dimension_group: autopay_month {
+  dimension_group: autopay {
     type: time
-    timeframes: [raw, date, week, month, quarter, year]
+    timeframes: [month, quarter, year]
     convert_tz: no
     datatype: date
     sql: ${TABLE}."AUTOPAY_MONTH" ;;
@@ -12,7 +12,7 @@ view: autopay_success {
     type: number
     sql: ${TABLE}."AUTOPAYS" ;;
   }
-  dimension_group: challenge_created_ts {
+  dimension_group: challenge_created {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: CAST(${TABLE}."CHALLENGE_CREATED_TS" AS TIMESTAMP_NTZ) ;;
@@ -33,7 +33,7 @@ view: autopay_success {
     type: yesno
     sql: ${TABLE}."CHALLENGE_START_OVERDUE_IND" ;;
   }
-  dimension_group: challenge_start_ts {
+  dimension_group: challenge_start {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: CAST(${TABLE}."CHALLENGE_START_TS" AS TIMESTAMP_NTZ) ;;
@@ -42,7 +42,7 @@ view: autopay_success {
     type: string
     sql: ${TABLE}."CHALLENGE_STATUS" ;;
   }
-  dimension_group: last_update_ts {
+  dimension_group: last_update {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}."LAST_UPDATE_TS" ;;
