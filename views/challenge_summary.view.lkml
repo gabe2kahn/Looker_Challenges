@@ -155,7 +155,7 @@ view: challenge_summary {
     value_format_name: percent_1
   }
 
-  measure: avg_challenge_start_utilization {
+  measure: average_challenge_start_utilization {
     type: average
     sql: ${challenge_start_utilization} ;;
     value_format_name: percent_1
